@@ -48,7 +48,8 @@ int main(int argc, char* argv[]){
         for (i=0; i < input_length; i++)
             scanf_elem(stdin, input_buffer+i);
 
-        memcpy(big_bucket+(input_length/size), input_buffer, (input_length%size)*sizeof(elem_t));
+        memcpy(big_bucket+(input_length/size), input_buffer,
+               (input_length%size)*sizeof(elem_t));
         range(input_length, input_buffer, min_max);
     }
 
@@ -159,10 +160,8 @@ int main(int argc, char* argv[]){
 static inline void range(size_t len, elem_t* buf, elem_t extremes[2]){
     size_t i;
 
-    if (len <= 0) return;
-
-    elem_t max=buf[0];
-    elem_t min=buf[0];
+    elem_t max=INT_MIN;
+    elem_t min=INT_MAX;
 
     for (i=0; i < len; i++){
         max = (buf[i] > max) ? buf[i] : max;
